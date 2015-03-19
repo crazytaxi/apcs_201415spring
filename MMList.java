@@ -17,7 +17,7 @@ public class MMList {
 		this.e = new Integer(i);
 	}
 	public int length () {
-		if (this.e == 0) {
+		if (this.e == null) {
 			return 0;
 		}
 		else {
@@ -29,6 +29,24 @@ public class MMList {
 			return l;
 		}
 	}
+
+	public int[] toArray () {
+		if (this.e == null) {
+			return new int [0];
+		}
+		else {
+			int size = this.length();
+			int[] tarr = new int[size];
+			MMList tmp = this;
+			tarr[0] = this.getE();
+			for (int i = 1; i < size; i++) {
+				tmp = tmp.getNext();
+				tarr[i] = tmp.getE();
+			}
+			return tarr;
+		}
+	}
+		
 	public String toString() {
 		String str = new String("");
 		MMList ref = this;
@@ -53,7 +71,7 @@ public class MMList {
 		return this.next;
 	}
 	
-	public MMList mergeSort(int[] f) {
+	public int[] mergeSort(int[] f) {
 		MMList srtd = new MMList();
 		if (f.length > 0) {
 			srtd.setE(f[0]);
@@ -67,8 +85,8 @@ public class MMList {
 			ta = ta.getNext();
 		}
 		//new List!!!
-		System.out.println("length of ll: " + srtd.length());
-		return srtd;
+		//System.out.println("length of ll: " + srtd.length());
+		return mSort(srtd).toArray();
 	}
 	public MMList mSort(MMList m) {
 		if (m.length() <= 1) {
@@ -92,31 +110,31 @@ public class MMList {
 		MMList it;
 		MMList fin = new MMList();
 		MMList init_fin = fin;
-		while ((l.length() > 0) && (r.length() > 0)) {
+		while (l != null && r != null && ((l.length() > 0) && (r.length() > 0))) {
 			if (l.getE() <= r.getE()) {
 				fin.setNext(l);
 				l = l.getNext();
 				fin = fin.getNext();
-				fin = fin.setNext(null);
+				fin.setNext(null);
 			}
 			else {
 				fin.setNext(r);
 				r = r.getNext();
 				fin = fin.getNext();
-				fin = fin.setNext(null);
+				fin.setNext(null);
 			}
 		}
-		while (l.length() > 0) {
+		while (l != null && l.length() > 0) {
 			fin.setNext(l);
 			l = l.getNext();
 			fin = fin.getNext();
-			fin = fin.setNext(null);
+			fin.setNext(null);
 		}
-		while (r.length() > 0) {
+		while (r != null && r.length() > 0) {
 			fin.setNext(r);
 			r = r.getNext();
 			fin = fin.getNext();
-			fin = fin.setNext(null);
+			fin.setNext(null);
 		}
 		init_fin = init_fin.getNext();
 		return init_fin;
@@ -129,6 +147,10 @@ public class MMList {
 		for (int i = 0; i < fakelist.length; i++) {
 			fakelist[i] = (int)(Math.ceil(Math.random() * 100));
 		}
-		System.out.println(obj.mergeSort(fakelist));
+		fakelist = obj.mergeSort(fakelist);
+		for (int i = 0; i < fakelist.length; i++) {
+			System.out.print(fakelist[i] + " ");
+		}
+		System.out.println();
 	}
 }
