@@ -1,5 +1,9 @@
 Qijia (Michael) Jin
 
+To RUN:
+
+java Word [name of dictionary]
+
 Features:
 -adding words from text file to tree
 -finding length of longest word (traversing the tree just for length)
