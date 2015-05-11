@@ -10,7 +10,12 @@ public class Word {
 				index.add(line, index);
 			}
 			read.close();
-			System.out.println("The height of this tree is: " + index.height(index));
+			System.out.println("The height of this tree is: " + index.height());
+			System.out.println("A random word from the tree: " + index.getRandomWord());
+			System.out.println("The total number of words in the tree: " + index.getCount());
+			System.out.println("Number of words with the prefix (ze): " + index.checkPrefix("ze"));
+			System.out.println("Longest word: " + index.getLongest());
+			System.out.println("ArrayList returned for prefix (ze): " + index.getPrefix("ze"));
 		}
 		catch (IOException e) {}
 	}
