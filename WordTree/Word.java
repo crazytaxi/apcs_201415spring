@@ -7,7 +7,7 @@ public class Word {
 			BufferedReader read = new BufferedReader (new FileReader(args[0]));
 			String line;
 			while ((line = read.readLine()) != null) {
-				index.add(line, index);
+				index.add(line + "\0", index);
 			}
 			read.close();
 			System.out.println("The height of this tree is: " + index.height());

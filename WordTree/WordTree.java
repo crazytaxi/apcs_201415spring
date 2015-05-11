@@ -142,7 +142,7 @@ public class WordTree {
 
 	public int height (WordTree wt) {
 		if (wt.getHash().size() == 0) {
-			return 0;
+			return -1;
 		}
 		int max = this.height(((wt.getHash().values().toArray(new WordTree[0])))[0]);
 		for (int i = 1; i < ((wt.getHash().values().toArray(new WordTree[0]))).length; i++) {
